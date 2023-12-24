@@ -13,8 +13,6 @@ public class User {
     private String lastName;
     private String username;
     private String password;
-    @Embedded
-    private Address address;
     @ManyToOne(optional = false)
     private Role role;
 
@@ -66,13 +64,6 @@ public class User {
         this.password = password;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 
     public Role getRole() {
         return role;
