@@ -7,9 +7,18 @@ public class UserDto {
     private String firstName;
     private String lastName;
     private String username;
+    private String dateOfBirth;
 
     public Long getId() {
         return id;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public void setId(Long id) {

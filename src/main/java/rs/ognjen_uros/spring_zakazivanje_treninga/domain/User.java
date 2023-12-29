@@ -8,13 +8,71 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String membershipId;
     private String email;
     private String firstName;
     private String lastName;
+    private String dateOfBirth;
     private String username;
     private String password;
+    private Integer numberOfSessions;
+    private String userKey;
+    private Boolean isActivated;
+    private Boolean isDeleted;
     @ManyToOne(optional = false)
     private Role role;
+
+    public String getMembershipId() {
+        return membershipId;
+    }
+
+    public void generateMembership() {
+        this.membershipId = this.lastName.charAt(0) + this.username;
+    }
+
+    public Boolean getActivated() {
+        return isActivated;
+    }
+
+    public void setActivated(Boolean activated) {
+        isActivated = activated;
+    }
+
+    public Integer getNumberOfSessions() {
+        return numberOfSessions;
+    }
+
+    public void setNumberOfSessions(Integer numberOfSessions) {
+        this.numberOfSessions = numberOfSessions;
+    }
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
+    }
+
+    public void setMembershipId(String membershipId) {
+        this.membershipId = membershipId;
+    }
+
+    public String getUserKey() {
+        return userKey;
+    }
+
+    public void setUserKey(String key) {
+        this.userKey = key;
+    }
+
+    public boolean isActivated() {
+        return isActivated;
+    }
+
+    public void setActivated(boolean activated) {
+        isActivated = activated;
+    }
 
     public Long getId() {
         return id;
@@ -26,6 +84,14 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public void setEmail(String email) {

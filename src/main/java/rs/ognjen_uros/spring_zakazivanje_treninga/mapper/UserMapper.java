@@ -33,15 +33,10 @@ public class UserMapper {
         user.setUsername(userCreateDto.getUsername());
         user.setPassword(userCreateDto.getPassword());
         user.setRole(roleRepository.findRoleByName("ROLE_USER").get());
-        //Set address
-//        Address address = new Address();
-//        address.setCountry(userCreateDto.getAddress().getCountry());
-//        address.setCity(userCreateDto.getAddress().getCity());
-//        address.setPostcode(userCreateDto.getAddress().getPostcode());
-//        address.setStreet(userCreateDto.getAddress().getStreet());
-//        address.setNumber(userCreateDto.getAddress().getNumber());
-//        address.setApartmentNumber(userCreateDto.getAddress().getApartmentNumber());
-//        user.setAddress(address);
+        user.setDateOfBirth(userCreateDto.getDateOfBirth());
+        user.generateMembership();
+        user.setUserKey(user.getMembershipId());
+        user.setActivated(false);
         return user;
     }
 }
