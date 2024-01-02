@@ -9,6 +9,7 @@ public class Manager {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String emailManager;
+    private String salaName;
     private String firstName;
     private String lastName;
     private String usernameManager;
@@ -16,6 +17,30 @@ public class Manager {
 
     public Long getId() {
         return id;
+    }
+
+    public String getEmailManager() {
+        return emailManager;
+    }
+
+    public void setEmailManager(String emailManager) {
+        this.emailManager = emailManager;
+    }
+
+    public String getSalaName() {
+        return salaName;
+    }
+
+    public void setSalaName(String salaName) {
+        this.salaName = salaName;
+    }
+
+    public String getUsernameManager() {
+        return usernameManager;
+    }
+
+    public void setUsernameManager(String usernameManager) {
+        this.usernameManager = usernameManager;
     }
 
     public void setId(Long id) {
