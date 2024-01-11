@@ -1,13 +1,12 @@
-package rs.ognjen_uros.spring_zakazivanje_treninga.domain;
+package rs.ognjen_uros.spring_zakazivanje_treninga.dto;
 
-import javax.persistence.*;
+import org.hibernate.validator.constraints.Length;
 
-@Entity
-@Table(indexes = {@Index(columnList = "usernameManager", unique = true), @Index(columnList = "emailManager", unique = true)})
-public class Manager {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
+public class ManagerCreateDto {
+
     private String emailManager;
     private String salaName;
     private String firstName;
@@ -15,39 +14,20 @@ public class Manager {
     private String usernameManager;
     private String password;
 
-    public Long getId() {
-        return id;
-    }
-
     public String getEmailManager() {
         return emailManager;
     }
+
+    public void setEmailManager(String emailManager) {
+        this.emailManager = emailManager;
+    }
+
     public String getSalaName() {
         return salaName;
     }
 
     public void setSalaName(String salaName) {
         this.salaName = salaName;
-    }
-
-    public String getUsernameManager() {
-        return usernameManager;
-    }
-
-    public void setUsernameManager(String usernameManager) {
-        this.usernameManager = usernameManager;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return emailManager;
-    }
-
-    public void setEmail(String email) {
-        this.emailManager = email;
     }
 
     public String getFirstName() {
@@ -65,6 +45,15 @@ public class Manager {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public String getUsernameManager() {
+        return usernameManager;
+    }
+
+    public void setUsernameManager(String usernameManager) {
+        this.usernameManager = usernameManager;
+    }
+
     public String getPassword() {
         return password;
     }

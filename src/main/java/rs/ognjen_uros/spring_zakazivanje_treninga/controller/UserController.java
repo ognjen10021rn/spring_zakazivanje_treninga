@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import rs.ognjen_uros.spring_zakazivanje_treninga.domain.Manager;
 import rs.ognjen_uros.spring_zakazivanje_treninga.dto.*;
 import rs.ognjen_uros.spring_zakazivanje_treninga.secutiry.CheckSecurity;
 import rs.ognjen_uros.spring_zakazivanje_treninga.service.UserService;
@@ -40,10 +41,20 @@ public class UserController {
         return new ResponseEntity<>(userService.findAll(pageable), HttpStatus.OK);
     }
 
+    @GetMapping("/getUser/{userId}")
+    public ResponseEntity<UserDto> getUserById(@PathVariable @Valid Long userId) {
+        return new ResponseEntity<>(userService.getUserById(userId), HttpStatus.OK);
+    }
+
     @ApiOperation(value = "Register user")
     @PostMapping("/registerUser")
     public ResponseEntity<UserDto> saveUser(@RequestBody @Valid UserCreateDto userCreateDto) {
         return new ResponseEntity<>(userService.add(userCreateDto), HttpStatus.CREATED);
+    }
+    @ApiOperation(value = "Register manager")
+    @PostMapping("/registerManager")
+    public ResponseEntity<ManagerDto> saveManager(@RequestBody @Valid ManagerCreateDto managerCreateDto) {
+        return new ResponseEntity<>(userService.saveManager(managerCreateDto), HttpStatus.CREATED);
     }
 
     @ApiOperation(value = "Login")

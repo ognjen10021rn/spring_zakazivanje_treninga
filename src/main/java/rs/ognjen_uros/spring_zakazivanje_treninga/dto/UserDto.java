@@ -8,6 +8,7 @@ public class UserDto {
     private String lastName;
     private String username;
     private String dateOfBirth;
+    private Integer numberOfSessions;
 
     public Long getId() {
         return id;
@@ -35,6 +36,14 @@ public class UserDto {
 
     public String getFirstName() {
         return firstName;
+    }
+
+    public Integer getNumberOfSessions() {
+        return numberOfSessions;
+    }
+
+    public void setNumberOfSessions(Integer numberOfSessions) {
+        this.numberOfSessions = numberOfSessions;
     }
 
     public void setFirstName(String firstName) {

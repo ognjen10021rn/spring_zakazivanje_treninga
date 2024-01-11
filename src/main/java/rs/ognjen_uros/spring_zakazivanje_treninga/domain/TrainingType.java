@@ -14,8 +14,6 @@ public class TrainingType {
     private String name;
     private String typeOfTraining;
     private BigDecimal price;
-    @ManyToOne
-    private Sala sala;
 
     public void setId(Long id) {
         this.id = id;
@@ -49,11 +47,4 @@ public class TrainingType {
         this.typeOfTraining = typeOfTraining;
     }
 
-    public Sala getSala() {
-        return sala;
-    }
-
-    public void setSala(Sala sala) {
-        this.sala = sala;
-    }
 }
