@@ -3,6 +3,7 @@ package rs.ognjen_uros.spring_zakazivanje_treninga.listener;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 import rs.ognjen_uros.spring_zakazivanje_treninga.dto.IncrementNumberOfSessionsDto;
+import rs.ognjen_uros.spring_zakazivanje_treninga.helper.MessageHelper;
 import rs.ognjen_uros.spring_zakazivanje_treninga.service.UserService;
 
 import javax.jms.JMSException;

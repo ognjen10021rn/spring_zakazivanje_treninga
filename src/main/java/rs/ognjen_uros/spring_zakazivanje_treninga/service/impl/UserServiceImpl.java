@@ -71,7 +71,8 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.userCreateDtoToUser(userCreateDto);
         tokenService.save(user, user.getUserKey());
         userRepository.save(user);
-        jmsTemplate.convertAndSend(sendVerificationForUser, messageHelper.createTextMessage(new SendVerificationLinkToUserDto(user.getId(), "http://localhost:8080/api/user/activate"+user.getUserKey())));
+        System.out.println(user.toString());
+        jmsTemplate.convertAndSend(sendVerificationForUser, messageHelper.createTextMessage(new SendVerificationLinkToUserDto(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), "http://localhost:8080/api/user/activate/"+user.getUserKey())));
         return userMapper.userToUserDto(user);
     }
 
@@ -95,7 +96,7 @@ public class UserServiceImpl implements UserService {
             return null;
         }
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        if(verificationToken.getExpireDate().before(timestamp)){
+        if(timestamp.before(verificationToken.getExpireDate())){
             user.setActivated(true);
             userRepository.save(user);
         }
