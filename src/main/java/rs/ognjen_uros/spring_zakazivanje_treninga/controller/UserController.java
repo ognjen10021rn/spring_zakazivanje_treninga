@@ -45,6 +45,22 @@ public class UserController {
     public ResponseEntity<UserDto> getUserById(@PathVariable @Valid Long userId) {
         return new ResponseEntity<>(userService.getUserById(userId), HttpStatus.OK);
     }
+    @GetMapping("/findByToken")
+    public ResponseEntity<String> findByToken(@RequestHeader("Authorization") String authorization) {
+        return new ResponseEntity<>(userService.findByToken(authorization), HttpStatus.OK);
+    }
+    @GetMapping("/getManager/{managerId}")
+    public ResponseEntity<ManagerDto> getManagerById(@PathVariable @Valid Long managerId) {
+        return new ResponseEntity<>(userService.getManagerById(managerId), HttpStatus.OK);
+    }
+    @GetMapping("/getManagerByEmail/{email}")
+    public ResponseEntity<ManagerDto> getManagerByEmail(@PathVariable @Valid String email) {
+        return new ResponseEntity<>(userService.getManagerByEmail(email), HttpStatus.OK);
+    }
+    @GetMapping("/getUserByEmail/{email}")
+    public ResponseEntity<UserDto> getUserByEmail(@PathVariable @Valid String email) {
+        return new ResponseEntity<>(userService.getUserByEmail(email), HttpStatus.OK);
+    }
 
     @ApiOperation(value = "Register user")
     @PostMapping("/registerUser")

@@ -10,9 +10,12 @@ public interface UserService {
     Page<UserDto> findAll(Pageable pageable);
 
     UserDto getUserById(Long id);
+    UserDto getUserByEmail(String email);
     ManagerDto getManagerById(Long id);
+    ManagerDto getManagerByEmail(String email);
     UserDto add(UserCreateDto userCreateDto);
 
+    String findByToken(String token);
     void updateUserNumberOfSessions(Long userid);
     UserDto activate(String userKey);
     UserDto update(UserChangeDto userDto, Long id);

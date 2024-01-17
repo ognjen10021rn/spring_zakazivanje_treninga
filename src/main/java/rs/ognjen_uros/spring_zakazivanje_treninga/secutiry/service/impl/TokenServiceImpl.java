@@ -31,6 +31,7 @@ public class TokenServiceImpl implements TokenService {
     public String generate(Claims claims) {
         return Jwts.builder()
                 .setClaims(claims)
+                .setSubject(claims.get("email").toString())
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
     }

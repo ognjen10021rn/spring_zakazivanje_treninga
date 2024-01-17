@@ -11,5 +11,6 @@ import java.util.Optional;
 public interface ManagerRepository extends JpaRepository<Manager, Long> {
 
     Manager findByEmailManagerAndPassword(String email, String password);
+    Manager findManagerByEmail(String email);
     Optional<Manager> findByEmailManager(String email);
 }

@@ -59,10 +59,28 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserDto getUserByEmail(String email) {
+        User user = userRepository.findUserByEmail(email);
+        if(user == null){
+            return null;
+        }
+        return userMapper.userToUserDto(user);
+    }
+
+    @Override
     public ManagerDto getManagerById(Long id) {
         Manager manager = managerRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException(String
                         .format("Manager with key: %s not found.", id)));
+        return userMapper.manageerToManagerDto(manager);
+    }
+
+    @Override
+    public ManagerDto getManagerByEmail(String email) {
+        Manager manager = managerRepository.findManagerByEmail(email);
+        if(manager == null){
+            return null;
+        }
         return userMapper.manageerToManagerDto(manager);
     }
 
@@ -74,6 +92,14 @@ public class UserServiceImpl implements UserService {
         System.out.println(user.toString());
         jmsTemplate.convertAndSend(sendVerificationForUser, messageHelper.createTextMessage(new SendVerificationLinkToUserDto(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), "http://localhost:8080/api/user/activate/"+user.getUserKey())));
         return userMapper.userToUserDto(user);
+    }
+
+    @Override
+    public String findByToken(String token) {
+        String jwt = token.substring(7);
+        Claims claims = tokenService.extractAllClaims(jwt);
+        String email = claims.getSubject();
+        return email;
     }
 
     @Override
@@ -102,6 +128,8 @@ public class UserServiceImpl implements UserService {
         }
         return userMapper.userToUserDto(user);
     }
+
+
 
     @Override
     public UserDto update(UserChangeDto userDto, Long id) {
